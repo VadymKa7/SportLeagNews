@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1073420218597",
+    "firebase_url": "https://sportnews-69ac5.firebaseio.com",
+    "project_id": "sportnews-69ac5",
+    "storage_bucket": "sportnews-69ac5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073420218597:android:2e5c72d2328e8d31",
+        "android_client_info": {
+          "package_name": "com.gray.vadimsyromiatnik.sportleagnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073420218597-tb2dfnhrqlfie0m9bjreumt3i0jj5scl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gray.vadimsyromiatnik.sportleagnews",
+            "certificate_hash": "274dfaf098b51af47dd27e350bd9bc07b4ec0c95"
+          }
+        },
+        {
+          "client_id": "1073420218597-o5sidcc9gpdccv3k3t6dl5q0eui553u3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhfL7AF1Mn9t3j9XnsdzHf-h5FacTusqg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073420218597-o5sidcc9gpdccv3k3t6dl5q0eui553u3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
