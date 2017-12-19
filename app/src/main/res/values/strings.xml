@@ -13,4 +13,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="text_error_login_password">Failed Login or password</string>
+    <string name="title_football_choose">Football</string>
+    <string name="title_american_football_choose">NFL</string>
+    <string name="title_hockey_choose">Hockey</string>
 </resources>

@@ -6,4 +6,5 @@ package com.gray.vadimsyromiatnik.sportleagnews.interactor;
 
 public interface LoginInteractor {
     String getMessage();
+    void test();
 }
