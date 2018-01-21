@@ -9,8 +9,7 @@ public class NewsList {
     private String body;
     private String link;
     private String photo;
-
-
+    
     public NewsList(String title, String body, String link, String photo) {
         this.title = title;
         this.body = body;
