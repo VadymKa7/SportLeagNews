@@ -8,4 +8,5 @@ public interface LoginPresenter extends MvpPresenter<LoginView> {
     void requestData();
     void signInWithEmailAndPassword(String email, String password);
     void createUserWithEmailAndPassword(String email, String password);
+    void createUserUsedFacebookAuth();
 }

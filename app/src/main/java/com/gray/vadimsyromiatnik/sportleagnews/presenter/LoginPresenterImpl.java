@@ -1,7 +1,6 @@
 package com.gray.vadimsyromiatnik.sportleagnews.presenter;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -10,10 +9,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.gray.vadimsyromiatnik.sportleagnews.App;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
+import com.gray.vadimsyromiatnik.sportleagnews.helpers.SharedPreferSave;
 import com.gray.vadimsyromiatnik.sportleagnews.interactor.LoginInteractor;
 import com.gray.vadimsyromiatnik.sportleagnews.view.LoginView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-
 
 import javax.inject.Inject;
 
@@ -23,12 +22,14 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
     private LoginInteractor interactor;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    SharedPreferSave sharedPreferSave;
 
     @Inject
-    LoginPresenterImpl(LoginInteractor interactor) {
+    LoginPresenterImpl(LoginInteractor interactor, SharedPreferSave sharedPreferSave) {
         this.interactor = interactor;
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        this.sharedPreferSave = sharedPreferSave;
     }
     
     @Override
@@ -46,13 +47,10 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-
-                    Log.d(TAG, "createUserWithEmail:success");
                     ifViewAttached(LoginView::intentMainActivity);
                     currentUser = mAuth.getCurrentUser();
                 } else {
 
-                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
                     ifViewAttached((LoginView view) -> {
                         view.showToast(App.getInstance().getString(R.string.text_error_login_password));
                     });
@@ -80,6 +78,11 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
                 }
             }
         });
+    }
+
+    @Override
+    public void createUserUsedFacebookAuth() {
+
     }
 
 }

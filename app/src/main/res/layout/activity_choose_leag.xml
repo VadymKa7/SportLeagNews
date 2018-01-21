@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ChooseCommandActivity">
+    tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ChooseLeagActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:src="@mipmap/ic_football"
+            style="?android:borderlessButtonStyle"
             android:text="text" />
 
         <ImageView
@@ -30,6 +31,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:src="@mipmap/ic_amrerican"
+            style="?android:borderlessButtonStyle"
             android:text="text" />
 
         <ImageView
@@ -39,6 +41,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:src="@mipmap/ic_hockey"
+            style="?android:borderlessButtonStyle"
             android:text="text" />
 
     </LinearLayout>

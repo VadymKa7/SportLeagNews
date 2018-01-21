@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".App"
@@ -15,16 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".service.MyFirebaseService"
             android:exported="false">
@@ -40,8 +43,8 @@
 
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.ChooseCommandActivity"></activity>
+        <activity android:name=".ui.activity.ChooseLeagActivity" />
+        <activity android:name=".ui.activity.ChooseCommandActivity" />
     </application>
-
 
 </manifest>

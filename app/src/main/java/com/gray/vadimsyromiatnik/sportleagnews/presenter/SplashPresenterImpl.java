@@ -1,7 +1,6 @@
 package com.gray.vadimsyromiatnik.sportleagnews.presenter;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,11 +29,10 @@ public class SplashPresenterImpl extends MvpBasePresenter<SplashView> implements
                 @Override
                 public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                     if(firebaseAuth.getCurrentUser() != null){
-                        Log.d(TAG, "onAuthStateChanged: success");
-                        view.intentMainActivity();
+                     //   view.intentMainActivity();
+                        view.intentLoginActivity();
                     }else {
                         view.intentLoginActivity();
-                        Log.d(TAG, "onAuthStateChanged: ----");
                     }
                 }
             });

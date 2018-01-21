@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ChooseCommandActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLeagueCommand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/btnTestCommand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tableFootball"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnPl1Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl4" />
+
+            <ImageView
+                android:id="@+id/btnPl2Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl3" />
+
+            <ImageView
+                android:id="@+id/btnPl3Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl2" />
+
+            <ImageView
+                android:id="@+id/btnPl4Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnPl5Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                style="?android:borderlessButtonStyle"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl5" />
+
+            <ImageView
+                android:id="@+id/btnPl6Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl6" />
+
+            <ImageView
+                android:id="@+id/btnPl7Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl7" />
+
+            <ImageView
+                android:id="@+id/btnPl8Command"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                style="?android:borderlessButtonStyle"
+                app:srcCompat="@drawable/pl8" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnPl9Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl9" />
+
+            <ImageView
+                android:id="@+id/btnPl10Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl10" />
+
+            <ImageView
+                android:id="@+id/btnPl11Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl11" />
+
+            <ImageView
+                android:id="@+id/btnPl12Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl12" />
+        </TableRow>
+
+        <TableRow
+            style="?android:borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnPl13Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl13" />
+
+            <ImageView
+                android:id="@+id/btnPl14Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl14" />
+
+            <ImageView
+                android:id="@+id/btnPl15Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl15" />
+
+            <ImageView
+                android:id="@+id/btnPl16Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl16" />
+        </TableRow>
+
+        <TableRow
+            style="?android:borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnPl17Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl17" />
+
+            <ImageView
+                android:id="@+id/btnPl18Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl18" />
+
+            <ImageView
+                android:id="@+id/btnPl19Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl19" />
+
+            <ImageView
+                android:id="@+id/btnPl20Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/pl20" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tableHockey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h6" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h5" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h4" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h3" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h2" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h7" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h8" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h9" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h10" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h11" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h12" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageView14"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h13" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h14" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h15" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h16" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h17" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h18" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imageView20"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h19" />
+
+            <ImageView
+                android:id="@+id/imageView21"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h20" />
+
+            <ImageView
+                android:id="@+id/imageView22"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h21" />
+
+            <ImageView
+                android:id="@+id/imageView23"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h22" />
+
+            <ImageView
+                android:id="@+id/imageView24"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h23" />
+
+            <ImageView
+                android:id="@+id/imageView25"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h24" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/imageView26"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h25" />
+
+            <ImageView
+                android:id="@+id/imageView27"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h26" />
+
+            <ImageView
+                android:id="@+id/imageView28"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h27" />
+
+            <ImageView
+                android:id="@+id/imageView29"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h28" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h29" />
+
+            <ImageView
+                android:id="@+id/imageView31"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h30" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/imageView32"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h31" />
+
+            <ImageView
+                android:id="@+id/imageView33"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h32" />
+
+        </TableRow>
+    </TableLayout>
+
+
+    <TableLayout
+        android:id="@+id/tableNFL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnNFL1Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h6" />
+
+            <ImageView
+                android:id="@+id/btnNFL2Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h5" />
+
+            <ImageView
+                android:id="@+id/btnNFL3Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h4" />
+
+            <ImageView
+                android:id="@+id/btnNFL4Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h3" />
+
+            <ImageView
+                android:id="@+id/btnNFL5Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h2" />
+
+            <ImageView
+                android:id="@+id/btnNFL6Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnNFL7Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h7" />
+
+            <ImageView
+                android:id="@+id/btnNFL8Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h8" />
+
+            <ImageView
+                android:id="@+id/btnNFL9Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h9" />
+
+            <ImageView
+                android:id="@+id/btnNFL10Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h10" />
+
+            <ImageView
+                android:id="@+id/btnNFL11Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h11" />
+
+            <ImageView
+                android:id="@+id/btnNFL12Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h12" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnNFL13Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h13" />
+
+            <ImageView
+                android:id="@+id/btnNFL14Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h14" />
+
+            <ImageView
+                android:id="@+id/btnNFL15Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h15" />
+
+            <ImageView
+                android:id="@+id/btnNFL16Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h16" />
+
+            <ImageView
+                android:id="@+id/btnNFL17Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h17" />
+
+            <ImageView
+                android:id="@+id/btnNFL18Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h18" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/btnNFL19Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h19" />
+
+            <ImageView
+                android:id="@+id/btnNFL20Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h20" />
+
+            <ImageView
+                android:id="@+id/btnNFL21Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h21" />
+
+            <ImageView
+                android:id="@+id/btnNFL22Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h22" />
+
+            <ImageView
+                android:id="@+id/btnNFL23Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h23" />
+
+            <ImageView
+                android:id="@+id/btnNFL24Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h24" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/btnNFL25Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h25" />
+
+            <ImageView
+                android:id="@+id/btnNFL26Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h26" />
+
+            <ImageView
+                android:id="@+id/btnNFL27Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h27" />
+
+            <ImageView
+                android:id="@+id/btnNFL28Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h28" />
+
+            <ImageView
+                android:id="@+id/btnNFL229Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h29" />
+
+            <ImageView
+                android:id="@+id/btnNFL30Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h30" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:id="@+id/btnNFL31Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h31" />
+
+            <ImageView
+                android:id="@+id/btnNFL32Command"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/h32" />
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

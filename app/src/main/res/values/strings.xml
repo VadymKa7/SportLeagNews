@@ -18,4 +18,8 @@
     <string name="title_football_choose">Football</string>
     <string name="title_american_football_choose">NFL</string>
     <string name="title_hockey_choose">Hockey</string>
+
+    // command PL
+    <string name="pl_command_arsenal">Arsenal</string>
+
 </resources>
