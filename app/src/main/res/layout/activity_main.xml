@@ -1,103 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.MainActivity">
+    android:layout_below="@+id/app_bar_order"
+    android:id="@+id/coordinator_layout">
 
-    <RelativeLayout
-        android:id="@+id/layoutWeatherMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/com_facebook_button_border_color_focused">
-
-        <TextView
-            android:id="@+id/detailsField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/weather_icon"
-            android:text="detailsField"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/cardview_dark_background" />
-
-        <TextView
-            android:id="@+id/currentTemperatureField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/detailsField"
-            android:text="currentTemperature"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/weather_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/cityField"
-            android:text="icon_w"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="50sp" />
-
-        <TextView
-            android:id="@+id/updatedField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/common_google_play_services_update_button"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/cityField"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="city"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/cardview_dark_background" />
-
-    </RelativeLayout>
-
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/layoutWeatherMain"
-        android:orientation="vertical">
+        tools:openDrawer="start">
 
-        <TextView
-            android:id="@+id/tvTodayEventMain"
+        <FrameLayout
+            android:id="@+id/mainFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:text="TextView" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:layout="@layout/main_fragment"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
-            android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-</RelativeLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navMainView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_driver_drawer" />
+</android.support.v4.widget.DrawerLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="padding_map_order">100</integer>
+    <integer name="size_padding_ride">0</integer>
+    <integer name="size_text_ride">190</integer>
+    <integer name="width_route_order">7</integer>
+</resources>

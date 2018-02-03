@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="padding_map_order">50</integer>
+    <integer name="size_padding_ride">-5</integer>
+    <integer name="size_text_ride">124</integer>
+    <integer name="width_route_order">4</integer>
+    <integer name="google_map_int">1</integer>
+</resources>

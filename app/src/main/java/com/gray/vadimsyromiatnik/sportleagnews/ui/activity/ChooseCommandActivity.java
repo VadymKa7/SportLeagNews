@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,9 +29,6 @@ import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
 public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, ChooseCommandPresenter> implements ChooseCommandView {
-
-    @BindView(R.id.tvLeagueCommand)TextView tvLeagueCommand;
-    @BindView(R.id.btnTestCommand)TextView btnTestCommand;
 
     @BindView(R.id.tableFootball)TableLayout tableFootball;
     @BindView(R.id.btnPl1Command)ImageView btnPl1Command;
@@ -58,7 +54,8 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
 
     @BindView(R.id.tableHockey)TableLayout tableHockey;
     @BindView(R.id.tableNFL)TableLayout tableNFL;
-    @Inject ChooseCommandPresenterImpl chooseCommandPresenter;
+    @Inject
+    ChooseCommandPresenterImpl chooseCommandPresenter;
 
     private String userID;
     private FirebaseDatabase mFirebaseDatabase;
@@ -72,7 +69,7 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         getSupportActionBar().hide();
         setContentView(R.layout.activity_choose_command);
         ButterKnife.bind(this);
-        tvLeagueCommand.setText(getIntentDataFromLeague());
+        //tvLeagueCommand.setText(getIntentDataFromLeague());
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -91,11 +88,6 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
 
             }
         });
-    }
-
-    @OnClick(R.id.btnTestCommand)void btnTestCommand(){
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 
     // Image Button Click Listener
@@ -200,6 +192,9 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         }else{
 
         }
+
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
 }

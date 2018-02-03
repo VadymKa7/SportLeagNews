@@ -7,58 +7,68 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gray.vadimsyromiatnik.sportleagnews.R;
+import com.gray.vadimsyromiatnik.sportleagnews.models.NewsList;
 
 import java.util.ArrayList;
 
-/**
- * Created by vadim on 19.01.18.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
-//    private String[] mDataset;
-    ArrayList<String> mDataset;
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> implements View.OnClickListener {
 
-    // класс view holder-а с помощью которого мы получаем ссылку на каждый элемент
-    // отдельного пункта списка
+    ArrayList<NewsList> mDataset;
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // наш пункт состоит только из одного TextView
-        public TextView mTextView;
+        @BindView(R.id.tvTitleItemNews)TextView tvTitleItemNews;
+        @BindView(R.id.tvBodyNews)TextView tvBodyNews;
+        @BindView(R.id.tvLinkNews)TextView tvLinkNews;
+        @BindView(R.id.tvPhotoNews)TextView tvPhotoNews;
+        @BindView(R.id.tvSubTitle)TextView tvSubTitle;
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView) v.findViewById(R.id.tvTitleItemNews);
+            ButterKnife.bind(this, v);
         }
+
     }
 
-    // Конструктор
-    public NewsAdapter(ArrayList <String> dataset) {
+    public NewsAdapter(ArrayList <NewsList> dataset) {
         mDataset = dataset;
     }
 
-    // Создает новые views (вызывается layout manager-ом)
     @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_news, parent, false);
-
-        // тут можно программно менять атрибуты лэйаута (size, margins, paddings и др.)
-
+    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
-    // Заменяет контент отдельного view (вызывается layout manager-ом)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.mTextView.setText(mDataset.get(position));
+        holder.tvTitleItemNews.setText(mDataset.get(position).getTitle());
+        holder.tvSubTitle.setText(mDataset.get(position).getSubtitle());
+        holder.tvBodyNews.setText(mDataset.get(position).getBody());
+        holder.tvLinkNews.setText(mDataset.get(position).getLink());
+        holder.tvPhotoNews.setText(mDataset.get(position).getPhoto());
+
+        holder.tvTitleItemNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.tvSubTitle.setVisibility(View.GONE);
+                holder.tvBodyNews.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+
+    @Override
+    public void onClick(View v) {
 
     }
 
-    // Возвращает размер данных (вызывается layout manager-ом)
     @Override
     public int getItemCount() {
         return mDataset.size();

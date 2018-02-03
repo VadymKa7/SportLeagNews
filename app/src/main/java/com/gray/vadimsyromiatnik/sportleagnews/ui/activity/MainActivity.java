@@ -1,26 +1,28 @@
 package com.gray.vadimsyromiatnik.sportleagnews.ui.activity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Typeface;
-import android.location.Location;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Html;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.text.format.DateUtils;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TimePicker;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.gray.vadimsyromiatnik.sportleagnews.AlarmActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainPresenterImpl;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments.MainFragment;
 import com.gray.vadimsyromiatnik.sportleagnews.view.MainView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -29,65 +31,85 @@ import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 
-public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView {
+public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
-    @BindView(R.id.cityField)TextView cityField;
-    @BindView(R.id.updatedField)TextView updatedField;
-    @BindView(R.id.detailsField)TextView detailsField;
-    @BindView(R.id.currentTemperatureField)TextView currentTemperatureField;
-    @BindView(R.id.tvTodayEventMain)TextView tvTodayEventMain;
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-
-    TextView weatherIcon;
-    Typeface weatherFont;
+    @BindView(R.id.drawerLayoutMain)DrawerLayout drawerLayoutMain;
+    FragmentManager mFragmentManager;
     @Inject
-    MainPresenterImpl mainPresenter;
-
-    private FusedLocationProviderClient mFusedLocationClient;
+    MainPresenter mainPresenter;
+    Calendar dateAndTime=Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFragmentManager = getSupportFragmentManager();
+        MainFragment mainF = new MainFragment();
+        FragmentTransaction ft = mFragmentManager.beginTransaction();
+        ft.add(R.id.mainFragment, mainF);
+        ft.commit();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navMainView);
+        navigationView.setNavigationItemSelectedListener(this);
 
-                if (location != null) {
-                    Log.d(TAG, "onSuccess: " + location.getLatitude());
-                    Log.d(TAG, "onSuccess: " + location.getLongitude());
-                    getPresenter().showCurrentCityWeather(String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
-                    // Logic to handle location object
-                }
-            }
-        });
-
-        weatherFont = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/weathericons-regular-webfont.ttf");
-        weatherIcon = (TextView)findViewById(R.id.weather_icon);
-        weatherIcon.setTypeface(weatherFont);
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-
-        // используем linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-//        getPresenter().showCurrentCityWeather();
-        getPresenter().getTodayEventFromDatabase();
-        getPresenter().getTodayNewsFromDatabase();
+        setInitialDateTime();
 
     }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.setting:
+                TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        dateAndTime.set(Calendar.MINUTE, minute);
+                        setInitialDateTime();
+                    }
+                };
+                break;
+            case R.id.alarm:
+                startActivity(new Intent(this, AlarmActivity.class));
+                break;
+
+        }
+        drawerLayoutMain.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    public void setTime(View v) {
+        new TimePickerDialog(MainActivity.this, t,
+                dateAndTime.get(Calendar.HOUR_OF_DAY),
+                dateAndTime.get(Calendar.MINUTE), true)
+                .show();
+    }
+
+
+    TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            dateAndTime.set(Calendar.MINUTE, minute);
+            setInitialDateTime();
+        }
+    };
+
+
+    private void setInitialDateTime() {
+
+       String  currentDateTime ;
+        currentDateTime = DateUtils.formatDateTime(this,
+                dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME);
+
+        Log.d(TAG, "setInitialDateTime: " + currentDateTime);
+    }
+
 
     @NonNull
     @Override
@@ -95,32 +117,4 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
         return mainPresenter;
     }
 
-
-
-    @Override
-    public void showEventFormServer(String event) {
-        tvTodayEventMain.setText(event);
-    }
-
-    @Override
-    public void showTodayNewList( RecyclerView.Adapter arrayAdapter) {
-        mRecyclerView.setAdapter(arrayAdapter);
-    }
-
-    @Override
-    public void showCurrentCityWeather(String weather_city, String weather_description, String weather_temperature, String weather_updatedOn, String weather_iconText, String sun_rise) {
-        cityField.setText(weather_city);
-        updatedField.setText(weather_updatedOn);
-        detailsField.setText(weather_description);
-        currentTemperatureField.setText(weather_temperature);
-        weatherIcon.setText(Html.fromHtml(weather_iconText));
-    }
-
-
-
-    @Override
-    public void showCommandAndLeague(String league, String command) {
-        Log.d(TAG, "showCommandAndLeague: " + league);
-        Log.d(TAG, "showCommandAndLeague: " + command);
-    }
 }
