@@ -1,6 +1,7 @@
 package com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -14,20 +15,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainFragmentPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.view.MainFragmentView;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.ListenerMainActivity;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.MainFragmentPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.view.MainFragmentView;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.support.AndroidSupportInjection;
 
 
@@ -39,6 +43,8 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @BindView(R.id.weather_icon)TextView weatherIcon;
     @BindView(R.id.tvTodayEventMain)TextView tvTodayEventMain;
     @BindView(R.id.recyclerViewNews)RecyclerView recyclerViewNews;
+    @BindView(R.id.imageMenuMain)ImageView imageMenuMain;
+    private ListenerMainActivity mListenerActivity;
     private RecyclerView.LayoutManager mLayoutManager;
     Typeface weatherFont;
     @Inject MainFragmentPresenter mainFragmentPresenter;
@@ -89,6 +95,11 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
 
 
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mListenerActivity = ((ListenerMainActivity) activity);
+    }
 
     @Override
     public void showEventFormServer(String event) {
@@ -102,16 +113,31 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
 
     @Override
     public void showCurrentCityWeather(String weather_city, String weather_description, String weather_temperature, String weather_updatedOn, String weather_iconText, String sun_rise) {
-        detailsField.setText(weather_description);
-        currentTemperatureField.setText(weather_temperature);
+        detailsField.setText(weather_city);
         weatherIcon.setText(Html.fromHtml(weather_iconText));
+        if(weather_temperature!=null){
+            currentTemperatureField.setText(splitWeatherTemperatureView(weather_temperature));
+        }
     }
-
 
     @Override
     public void showCommandAndLeague(String league, String command) {
         Log.d(TAG, "showCommandAndLeague: " + league);
         Log.d(TAG, "showCommandAndLeague: " + command);
+    }
+
+    @Override
+    public String splitWeatherTemperatureView(String temperature) {
+        String string = temperature;
+        String[] parts = string.split(",");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        return part1 ;
+    }
+
+    @OnClick(R.id.imageMenuMain)
+    public void showImageMenuNavigation(ImageView imageMenuMain){
+        mListenerActivity.onOpenNavigation();
     }
 
     @Override

@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.SplashPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.SplashPresenterImpl;
-import com.gray.vadimsyromiatnik.sportleagnews.view.SplashView;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.SplashPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.SplashPresenterImpl;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.view.SplashView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 

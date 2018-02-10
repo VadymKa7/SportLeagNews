@@ -6,10 +6,11 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.gray.vadimsyromiatnik.sportleagnews.R;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.ChooseLeagPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.ChooseLeagPresenterImpl;
-import com.gray.vadimsyromiatnik.sportleagnews.view.ChooseLeagView;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.ChooseLeagPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.ChooseLeagPresenterImpl;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.view.ChooseLeagView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

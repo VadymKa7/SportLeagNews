@@ -8,12 +8,11 @@
     android:orientation="vertical"
     tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ChooseCommandActivity">
 
-    <LinearLayout
+    <include
+        android:id="@+id/app_bar_command"
+        layout="@layout/activity_app_bar_command"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <TableLayout
         android:id="@+id/tableFootball"
@@ -30,38 +29,38 @@
 
             <ImageView
                 android:id="@+id/btnPl1Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl4" />
 
             <ImageView
                 android:id="@+id/btnPl2Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl3" />
 
             <ImageView
                 android:id="@+id/btnPl3Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl2" />
 
             <ImageView
                 android:id="@+id/btnPl4Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl1" />
         </TableRow>
 
@@ -72,38 +71,38 @@
 
             <ImageView
                 android:id="@+id/btnPl5Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
-                style="?android:borderlessButtonStyle"
                 android:clickable="true"
                 app:srcCompat="@drawable/pl5" />
 
             <ImageView
                 android:id="@+id/btnPl6Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl6" />
 
             <ImageView
                 android:id="@+id/btnPl7Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl7" />
 
             <ImageView
                 android:id="@+id/btnPl8Command"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:clickable="true"
-                style="?android:borderlessButtonStyle"
                 app:srcCompat="@drawable/pl8" />
         </TableRow>
 

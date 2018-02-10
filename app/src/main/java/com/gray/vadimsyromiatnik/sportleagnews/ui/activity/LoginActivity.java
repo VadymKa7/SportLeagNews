@@ -23,8 +23,8 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
-import com.gray.vadimsyromiatnik.sportleagnews.presenter.LoginPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.view.LoginView;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.presenter.LoginPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.view.LoginView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import javax.inject.Inject;
@@ -45,8 +45,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     CallbackManager callbackManager;
     @BindView(R.id.loginButton)LoginButton loginBtnFacebook;
 
-    @Inject
-    LoginPresenter presenter;
+    @Inject LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
 
         callbackManager = CallbackManager.Factory.create();
         loginBtnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -77,7 +74,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -92,7 +88,6 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
             }
         };
     }
-
 
 
     private void handelFacebookAccessToken(AccessToken accessToken){
@@ -130,11 +125,13 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     @OnClick(R.id.btnSignInLogin)
     public void btnSignInLogin(Button btnSignInLogin){
         //getPresenter().signInWithEmailAndPassword(String.valueOf(etEmailLogin.getText()), String.valueOf(etPasswordLogin.getText()));
+       // showDialog();
         getPresenter().signInWithEmailAndPassword(String.valueOf("bob@gmail.com"), String.valueOf("qwerty"));
     }
 
     @OnClick(R.id.btnRegistrationLogin)
     public void setBtnRegistrationLogin(Button btnRegistrationLogin){
+        //showDialog();
         if(!etEmailLogin.equals(null) && !etPasswordLogin.equals(null)) {
             getPresenter().createUserWithEmailAndPassword(String.valueOf(etEmailLogin.getText()), String.valueOf(etPasswordLogin.getText()));
         } else {
@@ -157,7 +154,8 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
 
     @Override
     public void showDialog() {
-        final ProgressDialog progressDialog = ProgressDialog.show(this, "Wait", "request_send", true);
+        final ProgressDialog progressDialog = ProgressDialog.show(this, null, "wait", true);
+        progressDialog.dismiss();
     }
 
     @Override
