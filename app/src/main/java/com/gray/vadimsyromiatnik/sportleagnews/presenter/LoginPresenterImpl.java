@@ -34,7 +34,7 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
     @Override
     public void requestData() {
         ifViewAttached(view -> {
-            view.showToast(interactor.getMessage());
+           // view.showToast(interactor.getMessage());
         });
     }
 
