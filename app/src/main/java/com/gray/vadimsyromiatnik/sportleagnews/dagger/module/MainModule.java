@@ -1,5 +1,7 @@
 package com.gray.vadimsyromiatnik.sportleagnews.dagger.module;
 
+import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainFragmentPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainFragmentPresenterImpl;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainPresenter;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainPresenterImpl;
 
@@ -14,5 +16,8 @@ import dagger.Module;
 public abstract class MainModule {
     @Binds
     abstract MainPresenter presenter(MainPresenterImpl presenter);
+
+    @Binds
+    abstract MainFragmentPresenter presenterFragment(MainFragmentPresenterImpl presenterFragment);
 
 }

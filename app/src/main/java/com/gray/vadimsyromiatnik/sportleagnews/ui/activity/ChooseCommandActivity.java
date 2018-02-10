@@ -61,12 +61,12 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
+    private String league;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_choose_command);
         ButterKnife.bind(this);
         //tvLeagueCommand.setText(getIntentDataFromLeague());
@@ -88,76 +88,69 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
 
             }
         });
+
+        getIntentDataFromLeague();
     }
 
     // Image Button Click Listener
     @OnClick(R.id.btnPl1Command)void btnPl1Command(){
-        chooseCommand(getIntentDataFromLeague(),"Kristal Palace");
+        chooseCommand(league,"Kristal Palace");
     }
-
     @OnClick(R.id.btnPl2Command)void btnPl2Command(){
-        chooseCommand(getIntentDataFromLeague(),"Southamptomn");
+        chooseCommand(league,"Southamptomn");
     }
     @OnClick(R.id.btnPl3Command)void btnPl3Command(){
-        chooseCommand(getIntentDataFromLeague(),"Arsenal");
+        chooseCommand(league,"Arsenal");
     }
     @OnClick(R.id.btnPl4Command)void btnPl4Command(){
-        chooseCommand(getIntentDataFromLeague(),"Newcastle");
+        chooseCommand(league,"Newcastle");
     }
     @OnClick(R.id.btnPl5Command)void btnPl5Command(){
-        chooseCommand(getIntentDataFromLeague(),"Bernly");
+        chooseCommand(league,"Bernly");
     }
     @OnClick(R.id.btnPl6Command)void btnPl6Command(){
-        chooseCommand(getIntentDataFromLeague(),"Watford");
+        chooseCommand(league,"Watford");
     }
     @OnClick(R.id.btnPl7Command)void btnPl7Command(){
-        chooseCommand(getIntentDataFromLeague(),"Liverpool");
+        chooseCommand(league,"Liverpool");
     }
     @OnClick(R.id.btnPl8Command)void btnPl8Command(){
-        chooseCommand(getIntentDataFromLeague(),"Bournemouth");
+        chooseCommand(league,"Bournemouth");
     }
-
     @OnClick(R.id.btnPl9Command)void btnPl9Command(){
-        chooseCommand(getIntentDataFromLeague(),"Stoke City");
+        chooseCommand(league,"Stoke City");
     }
-
     @OnClick(R.id.btnPl10Command)void btnPl10Command(){
-        chooseCommand(getIntentDataFromLeague(),"Tottenham");
+        chooseCommand(league,"Tottenham");
     }
     @OnClick(R.id.btnPl11Command)void btnPl11Command(){
-        chooseCommand(getIntentDataFromLeague(),"Chelsea");
+        chooseCommand(league,"Chelsea");
     }
-    @OnClick(R.id.btnPl12Command)void btnPl12Command(){
-        chooseCommand(getIntentDataFromLeague(),"West Brom");
-    }
+    @OnClick(R.id.btnPl12Command)void btnPl12Command(){chooseCommand(league,"West Brom");}
     @OnClick(R.id.btnPl13Command)void btnPl13Command(){
-        chooseCommand(getIntentDataFromLeague(),"West Hem");
+        chooseCommand(league,"West Hem");
     }
     @OnClick(R.id.btnPl14Command)void btnPl14Command(){
-        chooseCommand(getIntentDataFromLeague(),"Everton");
+        chooseCommand(league,"Everton");
     }
     @OnClick(R.id.btnPl15Command)void btnPl15Command(){
-        chooseCommand(getIntentDataFromLeague(),"Man Utd");
+        chooseCommand(league,"Man Utd");
     }
     @OnClick(R.id.btnPl16Command)void btnPl16Command(){
-        chooseCommand(getIntentDataFromLeague(),"Man City");
+        chooseCommand(league,"Man City");
     }
     @OnClick(R.id.btnPl17Command)void btnPl17Command(){
-        chooseCommand(getIntentDataFromLeague(),"Brighton");
+        chooseCommand(league,"Brighton");
     }
     @OnClick(R.id.btnPl18Command)void btnPl18Command(){
-        chooseCommand(getIntentDataFromLeague(),"Swansea");
+        chooseCommand(league,"Swansea");
     }
     @OnClick(R.id.btnPl19Command)void btnPl19Command(){
-        chooseCommand(getIntentDataFromLeague(),"Leicester");
+        chooseCommand(league,"Leicester");
     }
     @OnClick(R.id.btnPl20Command)void btnPl20Command(){
-        chooseCommand(getIntentDataFromLeague(),"Haddersfield");
+        chooseCommand(league,"Haddersfield");
     }
-
-
-
-
 
     @NonNull
     @Override
@@ -165,9 +158,9 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         return chooseCommandPresenter;
     }
 
-    public String getIntentDataFromLeague(){
+    public void getIntentDataFromLeague(){
         Intent intent = getIntent();
-        String league = intent.getStringExtra("league");
+        league = intent.getStringExtra("league");
         getPresenter().saveUserLeague(league);
         if(league.equals(getString(R.string.title_football_choose))){
             tableFootball.setVisibility(View.VISIBLE);
@@ -176,7 +169,6 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         } else if(league.equals(getString(R.string.title_american_football_choose))){
             tableNFL.setVisibility(View.VISIBLE);
         }
-        return league;
     }
 
 

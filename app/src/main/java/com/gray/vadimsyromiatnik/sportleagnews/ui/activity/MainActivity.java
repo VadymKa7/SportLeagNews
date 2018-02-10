@@ -1,6 +1,5 @@
 package com.gray.vadimsyromiatnik.sportleagnews.ui.activity;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.gray.vadimsyromiatnik.sportleagnews.AlarmActivity;
+import com.gray.vadimsyromiatnik.sportleagnews.ListenerMainActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainPresenter;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments.MainFragment;
@@ -31,13 +27,12 @@ import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 
-public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView, NavigationView.OnNavigationItemSelectedListener, ListenerMainActivity {
     private static final String TAG = "MainActivity";
-    @BindView(R.id.drawerLayoutMain)DrawerLayout drawerLayoutMain;
-    FragmentManager mFragmentManager;
-    @Inject
-    MainPresenter mainPresenter;
-    Calendar dateAndTime=Calendar.getInstance();
+    @BindView(R.id.drawer_layout)DrawerLayout drawerLayoutMain;
+    @BindView(R.id.nav_view)NavigationView navigationView;
+    private FragmentManager mFragmentManager;
+    @Inject MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,70 +41,45 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        navigationView.setNavigationItemSelectedListener(this);
         mFragmentManager = getSupportFragmentManager();
         MainFragment mainF = new MainFragment();
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.add(R.id.mainFragment, mainF);
         ft.commit();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navMainView);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        setInitialDateTime();
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.setting:
-                TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        dateAndTime.set(Calendar.MINUTE, minute);
-                        setInitialDateTime();
-                    }
-                };
-                break;
-            case R.id.alarm:
-                startActivity(new Intent(this, AlarmActivity.class));
-                break;
 
+        int id = item.getItemId();
+
+        if (id == R.id.setting) {
+            startActivity(new Intent(this, SettingActivity.class));
+            finish();
+        } else if (id == R.id.nav_slideshow) {
+            Toast.makeText(this, "in developing", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_manage) {
+            Toast.makeText(this, "in developing", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_share) {
+            Toast.makeText(this, "in developing", Toast.LENGTH_SHORT).show();
         }
-        drawerLayoutMain.closeDrawer(GravityCompat.START);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
 
-    public void setTime(View v) {
-        new TimePickerDialog(MainActivity.this, t,
-                dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
-    }
-
-
-    TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            dateAndTime.set(Calendar.MINUTE, minute);
-            setInitialDateTime();
-        }
-    };
-
-
-    private void setInitialDateTime() {
-
-       String  currentDateTime ;
-        currentDateTime = DateUtils.formatDateTime(this,
-                dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME);
-
-        Log.d(TAG, "setInitialDateTime: " + currentDateTime);
-    }
-
+//    private void setInitialDateTime() {
+//
+//       String  currentDateTime ;
+//        currentDateTime = DateUtils.formatDateTime(this,
+//                dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME);
+//
+//        Log.d(TAG, "setInitialDateTime: " + currentDateTime);
+//    }
 
     @NonNull
     @Override
@@ -117,4 +87,21 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
         return mainPresenter;
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawerLayoutMain.isDrawerOpen(GravityCompat.START)) {
+            drawerLayoutMain.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onOpenNavigation() {
+        if (!drawerLayoutMain.isDrawerOpen(GravityCompat.START))
+            drawerLayoutMain.openDrawer(GravityCompat.START);
+
+    }
 }

@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite2"
     tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments.MainFragment">
 
     <RelativeLayout
@@ -10,39 +12,53 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="2dp">
 
         <TextView
             android:id="@+id/detailsField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/weather_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/currentTemperatureField"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="2dp"
             android:text="detailsField"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="16sp" />
+            android:textColor="@color/colorGrayLight"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/currentTemperatureField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/detailsField"
-            android:text="currentTemperature"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/imageNavDrower"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="12dp"
+            android:text="-6'"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="16sp" />
+            android:textColor="@color/colorGrayLight"
+            android:textSize="26sp" />
 
         <TextView
             android:id="@+id/weather_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_above="@+id/detailsField"
+            android:layout_below="@+id/imageNavDrower"
+            android:layout_toLeftOf="@+id/currentTemperatureField"
+            android:layout_toStartOf="@+id/currentTemperatureField"
+            android:gravity="center_vertical"
             android:text="icon_w"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="40sp" />
+            android:textColor="@color/colorGrayLight"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/imageNavDrower"
@@ -53,6 +69,18 @@
             android:layout_alignParentTop="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/imageMenuMain"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_menu" />
 
     </RelativeLayout>
 
@@ -67,12 +95,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorControlActivated"
+            android:background="@color/colorGreenBackground"
             android:orientation="horizontal"
-            android:paddingBottom="16dp"
+            android:paddingBottom="6dp"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
-            android:paddingTop="16dp">
+            android:paddingTop="6dp">
 
             <TextView
                 android:id="@+id/tvTodayEventMain"
@@ -86,13 +114,20 @@
                 android:text="TextView" />
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewNews"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="305dp"
-            android:scrollbars="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

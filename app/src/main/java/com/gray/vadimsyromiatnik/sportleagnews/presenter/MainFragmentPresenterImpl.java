@@ -20,9 +20,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-/**
- * Created by vadim on 25.01.18.
- */
 
 public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentView> implements MainFragmentPresenter {
     private static final String TAG = "MainFragmentPresenterIm";
@@ -37,14 +34,13 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
         this.sharedPreferSave = sharedPreferSave;
     }
 
-
     @Override
     public void showCurrentCityWeather(String lat, String lng) {
-        Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse() {
+        Function.placeIdTask asyncTask = new Function.placeIdTask(new Function.AsyncResponse() {
             public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_updatedOn, String weather_iconText, String sun_rise) {
 
                 ifViewAttached((MainFragmentView view) -> {
-                    view.showCurrentCityWeather(weather_city, weather_description,weather_temperature, weather_updatedOn,weather_iconText,sun_rise);
+                    view.showCurrentCityWeather(weather_city, weather_description, weather_temperature, weather_updatedOn, weather_iconText, sun_rise);
                 });
             }
         });
@@ -131,10 +127,11 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     @Override
     public void getCommandAndLeague() {
-        String command =    sharedPreferSave.readPreference(KeyClass.TEXT_COMMAND_CHOOSE);
-        String league =    sharedPreferSave.readPreference(KeyClass.TEXT_LEAGUE_CHOOSE);
+        String command = sharedPreferSave.readPreference(KeyClass.TEXT_COMMAND_CHOOSE);
+        String league = sharedPreferSave.readPreference(KeyClass.TEXT_LEAGUE_CHOOSE);
         ifViewAttached((MainFragmentView view) -> {
             view.showCommandAndLeague(league, command);
         });
     }
 }
+

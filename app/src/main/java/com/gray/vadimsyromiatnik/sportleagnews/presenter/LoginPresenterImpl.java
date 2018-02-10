@@ -23,7 +23,6 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     SharedPreferSave sharedPreferSave;
-
     @Inject
     LoginPresenterImpl(LoginInteractor interactor, SharedPreferSave sharedPreferSave) {
         this.interactor = interactor;
@@ -42,7 +41,6 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
     // sign in
     @Override
     public void signInWithEmailAndPassword(String email, String password) {
-
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -62,7 +60,6 @@ public class LoginPresenterImpl extends MvpBasePresenter<LoginView> implements L
     // registration
     @Override
     public void createUserWithEmailAndPassword(String email, String password) {
-        //final ProgressDialog progressDialog = ProgressDialog.show(this, "Wait", "request_send", true);
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

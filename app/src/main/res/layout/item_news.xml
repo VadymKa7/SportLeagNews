@@ -3,94 +3,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp">
+    android:layout_marginBottom="2dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="2dp">
 
-    <TextView
-        android:id="@+id/tvTitleItemNews"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@+id/imageView34"
-        android:layout_toRightOf="@+id/imageView34"
-        android:clickable="true"
-        android:text="text"
-        android:textColor="@color/place_autocomplete_prediction_primary_text"
-        android:textSize="16sp" />
+        android:background="@drawable/list_item_bg">
+
+        <TextView
+            android:id="@+id/tvTitleItemNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/imageView34"
+            android:layout_toLeftOf="@+id/imageInformation"
+            android:layout_toRightOf="@+id/imageView34"
+            android:layout_toStartOf="@+id/imageInformation"
+            android:clickable="true"
+            android:text="text"
+            android:textColor="@color/place_autocomplete_prediction_primary_text"
+            android:textSize="14sp" />
 
 
-    <TextView
-        android:id="@+id/tvSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tvTitleItemNews"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@+id/imageView34"
-        android:layout_toRightOf="@+id/imageView34"
-        android:layout_weight="1"
-        android:text="subtitle" />
+        <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitleItemNews"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/imageView34"
+            android:layout_toLeftOf="@+id/imageInformation"
+            android:layout_toRightOf="@+id/imageView34"
+            android:layout_toStartOf="@+id/imageInformation"
+            android:layout_weight="1"
+            android:text="subtitle"
+            android:textColor="@color/colorGrayLight"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/tvBodyNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tvTitleItemNews"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@+id/imageView34"
-        android:layout_toRightOf="@+id/imageView34"
-        android:layout_weight="1"
-        android:text="body"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvBodyNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitleItemNews"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/imageView34"
+            android:layout_toLeftOf="@+id/imageInformation"
+            android:layout_toRightOf="@+id/imageView34"
+            android:layout_toStartOf="@+id/imageInformation"
+            android:layout_weight="1"
+            android:text="body"
+            android:textColor="@color/colorGrayLight"
+            android:textSize="12sp"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvLinkNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/imageView34"
-        android:layout_toEndOf="@+id/tvPhotoNews"
-        android:layout_toRightOf="@+id/tvPhotoNews"
-        android:layout_weight="1"
-        android:text="link"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvLinkNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/imageView34"
+            android:layout_toEndOf="@+id/tvPhotoNews"
+            android:layout_toRightOf="@+id/tvPhotoNews"
+            android:layout_weight="1"
+            android:text="link"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvPhotoNews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="photo"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tvPhotoNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="photo"
+            android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/imageView34"
-        android:layout_width="40dp"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvPhotoNews"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        app:srcCompat="@mipmap/ic_football" />
+        <ImageView
+            android:id="@+id/imageView34"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvPhotoNews"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="4dp"
+            app:srcCompat="@mipmap/ic_football" />
 
+        <ImageView
+            android:id="@+id/imageInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_chevron_down" />
+
+        <ImageView
+            android:id="@+id/imageClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_chevron_up" />
+    </RelativeLayout>
 </RelativeLayout>

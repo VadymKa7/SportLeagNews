@@ -6,6 +6,7 @@ import com.gray.vadimsyromiatnik.sportleagnews.dagger.module.MainModule;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ChooseCommandActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.LoginActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.MainActivity;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments.MainFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -18,6 +19,10 @@ public abstract class AndroidBindingModule {
 
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity contributeMainActivity();
+
+    @ContributesAndroidInjector(modules = MainModule.class)
+    abstract MainFragment contributeMainFragment();
+
 
     @ContributesAndroidInjector(modules = CommandModule.class)
     abstract ChooseCommandActivity contributeChooseCommandActivity();
