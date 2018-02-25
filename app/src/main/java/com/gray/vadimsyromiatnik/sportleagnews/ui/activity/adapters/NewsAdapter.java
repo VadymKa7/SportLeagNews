@@ -107,10 +107,22 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 }
             });
         } else if (viewHolder instanceof ViewHolderAnimation) {
+
             ViewHolderAnimation holder = (ViewHolderAnimation) viewHolder;
-                    Animation animation = AnimationUtils.loadAnimation(App.getInstance(), R.anim.anim_football);
+
+            Animation animation = AnimationUtils.loadAnimation(App.getInstance(), R.anim.anim_football);
+            holder.imageAnimationFootball.setAnimation(animation);
+            animation.setAnimationListener(this);
+            holder.imageAnimationFootball.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     holder.imageAnimationFootball.setAnimation(animation);
-                  animation.setAnimationListener(this);
+                }
+            });
+
+//                    Animation animation = AnimationUtils.loadAnimation(App.getInstance(), R.anim.anim_football);
+//                    holder.imageAnimationFootball.setAnimation(animation);
+//                  animation.setAnimationListener(this);
 
         }
     }

@@ -88,7 +88,7 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
         recyclerViewNews.setLayoutManager(mLayoutManager);
 
         getPresenter().getTodayNewsFromDatabase();
-        getPresenter().getTodayEventFromDatabase();
+        getPresenter().getTodayTeamEventFromDatabase();
 
         return view;
     }

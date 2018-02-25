@@ -21,15 +21,16 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/imageBackTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_left"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
                 android:background="@android:color/transparent"
                 android:padding="10dp"
-                android:id="@+id/image_button_settings"
-                android:layout_marginStart="10dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:src="@drawable/ic_arrow_left"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
                 android:textColor="@color/colorWhite"
                 android:layout_marginStart="24dp"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/image_button_settings" />
+                android:layout_toEndOf="@+id/imageBackTeam" />
 
         </RelativeLayout>
 

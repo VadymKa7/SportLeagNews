@@ -54,6 +54,9 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
 
     @BindView(R.id.tableHockey)TableLayout tableHockey;
     @BindView(R.id.tableNFL)TableLayout tableNFL;
+
+    @BindView(R.id.imageBackTeam)ImageView imageBackTeam;
+
     @Inject
     ChooseCommandPresenterImpl chooseCommandPresenter;
 
@@ -126,7 +129,7 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
     @OnClick(R.id.btnPl11Command)void btnPl11Command(){
         chooseCommand(league,"Chelsea");
     }
-    @OnClick(R.id.btnPl12Command)void btnPl12Command(){chooseCommand(league,"West Brom");}
+    @OnClick(R.id.btnPl12Command)void btnPl12Command() {chooseCommand(league,"West Brom");}
     @OnClick(R.id.btnPl13Command)void btnPl13Command(){
         chooseCommand(league,"West Hem");
     }
@@ -150,6 +153,12 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
     }
     @OnClick(R.id.btnPl20Command)void btnPl20Command(){
         chooseCommand(league,"Haddersfield");
+    }
+
+
+    @OnClick(R.id.imageBackTeam)void imageBackTeam(){
+       startActivity(new Intent(this, ChooseLeagActivity.class));
+       finish();
     }
 
     @NonNull

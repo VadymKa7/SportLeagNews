@@ -50,7 +50,7 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
 
     @Override
-    public void getTodayEventFromDatabase() {
+    public void getTodayTeamEventFromDatabase() {
         DatabaseReference databaseReferenceEvents = database.getReference(KeyClass.TEXT_EVENTS_DAY).child("Arsenal");
 
         databaseReferenceEvents.addChildEventListener(new ChildEventListener() {
@@ -83,6 +83,16 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
             }
         });
+
+    }
+
+    @Override
+    public void getTodaySportEventFromDatabase() {
+
+    }
+
+    @Override
+    public void getTodayWeatherEventFromDatabase() {
 
     }
 
