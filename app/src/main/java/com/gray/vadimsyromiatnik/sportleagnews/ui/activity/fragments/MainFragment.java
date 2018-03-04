@@ -3,6 +3,7 @@ package com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -16,14 +17,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.gray.vadimsyromiatnik.sportleagnews.ListenerMainActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.R;
+import com.gray.vadimsyromiatnik.sportleagnews.models.BestEvent;
+import com.gray.vadimsyromiatnik.sportleagnews.models.CommandNews;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Plan;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Weather;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainFragmentPresenter;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.MainActivity;
+import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ReadAllEventActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.view.MainFragmentView;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
@@ -42,6 +51,14 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @BindView(R.id.currentTemperatureField)TextView currentTemperatureField;
     @BindView(R.id.weather_icon)TextView weatherIcon;
     @BindView(R.id.tvTodayEventMain)TextView tvTodayEventMain;
+    @BindView(R.id.tvTodayWeatherEventMain)TextView tvTodayWeatherEventMain;
+    @BindView(R.id.tvTodayPlanMain)TextView tvTodayPlanMain;
+    @BindView(R.id.tvTodayEventMainClick)TextView tvTodayEventMainClick;
+    @BindView(R.id.tvTodayBestEventMain)TextView tvTodayBestEventMain;
+    @BindView(R.id.tvTodayWeatherEventMainClick)TextView tvTodayWeatherEventMainClick;
+    @BindView(R.id.tvTodayPlanMainClick)TextView tvTodayPlanMainClick;
+    @BindView(R.id.tvTodayBestEventMainClick)TextView tvTodayBestEventMainClick;
+    @BindView(R.id.switchTitle)Switch switchTitle;
     @BindView(R.id.recyclerViewNews)RecyclerView recyclerViewNews;
     @BindView(R.id.imageMenuMain)ImageView imageMenuMain;
     private ListenerMainActivity mListenerActivity;
@@ -89,6 +106,9 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
 
         getPresenter().getTodayNewsFromDatabase();
         getPresenter().getTodayTeamEventFromDatabase();
+        getPresenter().getTodayWeatherEventFromDatabase("Football");
+        getPresenter().getTodayBestEventFromDatabase();
+        getPresenter().getTodayPlanEventFromDatabase();
 
         return view;
     }
@@ -102,8 +122,29 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     }
 
     @Override
-    public void showEventFormServer(String event) {
-        tvTodayEventMain.setText(event);
+    public void showEventFormServer(CommandNews event) {
+        tvTodayEventMain.setText(event.getTitle());
+        tvTodayEventMainClick.setText(event.getSubtitle());
+    }
+
+    @Override
+    public void showWeatherEventFormServer(Weather weather) {
+        tvTodayWeatherEventMain.setText(weather.getTitle());
+        tvTodayWeatherEventMainClick.setText(weather.getSubtitle());
+
+    }
+
+    @Override
+    public void showPlanEventFormServer(Plan plan) {
+        tvTodayPlanMain.setText(plan.getTitle());
+        tvTodayPlanMainClick.setText(plan.getSubtitle());
+
+    }
+
+    @Override
+    public void showBestEventFormServer(BestEvent bestEvan) {
+        tvTodayBestEventMain.setText(bestEvan.getTitle());
+        tvTodayBestEventMainClick.setText(bestEvan.getSubtitle());
     }
 
     @Override
@@ -138,6 +179,13 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @OnClick(R.id.imageMenuMain)
     public void showImageMenuNavigation(ImageView imageMenuMain){
         mListenerActivity.onOpenNavigation();
+    }
+
+
+    @OnClick(R.id.tvTodayEventMainClick)
+    public void tvTodayEventMainClick(TextView tvTodayEventMainClick){
+        Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
     }
 
     @Override

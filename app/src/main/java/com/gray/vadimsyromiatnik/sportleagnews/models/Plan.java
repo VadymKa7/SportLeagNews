@@ -1,19 +1,20 @@
 package com.gray.vadimsyromiatnik.sportleagnews.models;
 
 /**
- * Created by vadimsyromiatnik on 1/13/18.
+ * Created by vadimsyromiatnik on 3/3/18.
  */
 
-public class CommandNews {
+public class Plan {
+
     private String title;
     private String body;
     private String subtitle;
 
-    public CommandNews() {
+    public Plan() {
 
     }
 
-    public CommandNews(String title, String subtitle, String body) {
+    public Plan(String title, String subtitle, String body) {
         this.title = title;
         this.subtitle = subtitle;
         this.body = body;

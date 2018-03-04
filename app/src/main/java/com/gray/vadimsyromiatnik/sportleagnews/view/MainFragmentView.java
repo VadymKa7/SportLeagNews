@@ -2,6 +2,10 @@ package com.gray.vadimsyromiatnik.sportleagnews.view;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.gray.vadimsyromiatnik.sportleagnews.models.BestEvent;
+import com.gray.vadimsyromiatnik.sportleagnews.models.CommandNews;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Plan;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Weather;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 
 /**
@@ -10,7 +14,13 @@ import com.hannesdorfmann.mosby3.mvp.MvpView;
 
 public interface MainFragmentView extends MvpView {
 
-    void showEventFormServer(String message);
+    void showEventFormServer(CommandNews message);
+
+    void showWeatherEventFormServer(Weather weather);
+
+    void showPlanEventFormServer(Plan plan);
+
+    void showBestEventFormServer(BestEvent plan);
 
     void showTodayNewList(RecyclerView.Adapter arrayAdapter);
 

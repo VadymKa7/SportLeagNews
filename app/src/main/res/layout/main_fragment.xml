@@ -6,13 +6,17 @@
     android:background="@color/colorWhite2"
     tools:context="com.gray.vadimsyromiatnik.sportleagnews.ui.activity.fragments.MainFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:id="@+id/layoutWeatherMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginBottom="2dp">
 
         <TextView
@@ -82,6 +86,20 @@
             android:clickable="true"
             android:src="@drawable/ic_menu" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageNavDrower"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@+id/weather_icon"
+            android:layout_toStartOf="@+id/weather_icon"
+            android:paddingTop="6dp"
+            android:text="Hi, Bro !"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="32sp" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -104,21 +122,176 @@
 
             <TextView
                 android:id="@+id/tvTodayEventMain"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
+                android:layout_marginRight="6dp"
+                android:text="Today event"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/tvTodayEventMainClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:clickable="true"
+                android:text="tvTodayEventMainClick"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="6dp"
+            android:paddingStart="6dp"
+            android:paddingTop="6dp">
+
+            <ImageView
+                android:id="@+id/imageView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/player_image" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreenBackground"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tvTodayWeatherEventMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:text="Today weather event"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/tvTodayWeatherEventMainClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tvTodayWeatherEventMainClick"
+                android:clickable="true"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/com_facebook_button_background_color_selected"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tvTodayPlanMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:text="Today plan"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/tvTodayPlanMainClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="tvTodayPlanMainClick"
+                android:clickable="true"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tvTodayBestEventMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:text="Today best event"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/tvTodayBestEventMainClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:text="tvTodayBestEventMainClick"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp">
+
+
+            <TextView
+                android:id="@+id/tvTodayTitleListEventMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Title list event"
+                android:textColor="@color/cardview_dark_background" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="16dp">
+            android:paddingBottom="6dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp">
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="That's all !" />
+
+            <Switch
+                android:id="@+id/switchTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="If you wsnt we show you new events every two hover" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="6dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewNews"
@@ -129,28 +302,7 @@
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:gravity="center_horizontal"
-                    android:text="Animation"
-                    android:textSize="28sp" />
-            </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
-
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

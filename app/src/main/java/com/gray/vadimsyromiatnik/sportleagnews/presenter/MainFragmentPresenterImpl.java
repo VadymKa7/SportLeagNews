@@ -11,7 +11,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.gray.vadimsyromiatnik.sportleagnews.helpers.Function;
 import com.gray.vadimsyromiatnik.sportleagnews.helpers.KeyClass;
 import com.gray.vadimsyromiatnik.sportleagnews.helpers.SharedPreferSave;
+import com.gray.vadimsyromiatnik.sportleagnews.models.BestEvent;
+import com.gray.vadimsyromiatnik.sportleagnews.models.CommandNews;
 import com.gray.vadimsyromiatnik.sportleagnews.models.NewsList;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Plan;
+import com.gray.vadimsyromiatnik.sportleagnews.models.Weather;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.adapters.NewsAdapter;
 import com.gray.vadimsyromiatnik.sportleagnews.view.MainFragmentView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
@@ -26,6 +30,7 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     ArrayList<NewsList> newsDataList = new ArrayList<>();
+    ArrayList<Weather> newsDataWeather = new ArrayList<>();
     RecyclerView.Adapter arrayAdapter;
     SharedPreferSave sharedPreferSave;
 
@@ -48,16 +53,15 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
         asyncTask.execute(lat, lng);
     }
 
-
+    // ----- today events ------
     @Override
     public void getTodayTeamEventFromDatabase() {
-        DatabaseReference databaseReferenceEvents = database.getReference(KeyClass.TEXT_EVENTS_DAY).child("Arsenal");
+        DatabaseReference databaseReferenceEvents = database.getReference(KeyClass.TEXT_EVENTS_DAY).child("Football");
 
         databaseReferenceEvents.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String changedPost = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "onChildAdded: " + changedPost);
+                CommandNews changedPost = dataSnapshot.getValue(CommandNews.class);
                 ifViewAttached((MainFragmentView view) -> {
                     view.showEventFormServer(changedPost);
                 });
@@ -86,16 +90,127 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     }
 
-    @Override
-    public void getTodaySportEventFromDatabase() {
 
+    // ----- today plan -----
+    @Override
+    public void getTodayPlanEventFromDatabase() {
+
+        DatabaseReference databaseReferenceEventsSport = database.getReference(KeyClass.TEXT_PLAN_EVENT_DAY).child("Football");
+
+        databaseReferenceEventsSport.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Plan plan = dataSnapshot.getValue(Plan.class);
+                ifViewAttached((MainFragmentView view) -> {
+                    view.showPlanEventFormServer(plan);
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    @Override
-    public void getTodayWeatherEventFromDatabase() {
 
+    // ----- weather -----
+    @Override
+    public void getTodayWeatherEventFromDatabase(String sport) {
+
+        DatabaseReference databaseReferenceEventsWeather = database.getReference(KeyClass.TEXT_EVENT_WEATHER_DAY).child(sport);
+
+        databaseReferenceEventsWeather.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+                Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
+                Weather weather = dataSnapshot.getValue(Weather.class);
+                ifViewAttached((MainFragmentView view) -> {
+                    view.showWeatherEventFormServer(weather);
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
+
+    // ----- best event -----
+    @Override
+    public void getTodayBestEventFromDatabase() {
+
+        DatabaseReference databaseReferenceEventsWeather = database.getReference(KeyClass.TEXT_EVENT_SPORT_DAY).child("Football");
+
+        databaseReferenceEventsWeather.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+                Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
+                BestEvent weather = dataSnapshot.getValue(BestEvent.class);
+                ifViewAttached((MainFragmentView view) -> {
+                    view.showBestEventFormServer(weather);
+                });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    // ----- list events -----
     @Override
     public void getTodayNewsFromDatabase() {
         DatabaseReference databaseReferenceNews = database.getReference(KeyClass.TEXT_COMMAND_NEWS_DAY);
@@ -139,6 +254,8 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
     public void getCommandAndLeague() {
         String command = sharedPreferSave.readPreference(KeyClass.TEXT_COMMAND_CHOOSE);
         String league = sharedPreferSave.readPreference(KeyClass.TEXT_LEAGUE_CHOOSE);
+        Log.d(TAG, "getCommandAndLeague: " + command);
+        Log.d(TAG, "getCommandAndLeague: " + league);
         ifViewAttached((MainFragmentView view) -> {
             view.showCommandAndLeague(league, command);
         });

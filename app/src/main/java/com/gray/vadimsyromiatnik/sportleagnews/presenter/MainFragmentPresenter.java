@@ -10,8 +10,9 @@ import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 public interface MainFragmentPresenter  extends MvpPresenter<MainFragmentView> {
     void showCurrentCityWeather(String lng, String lon);
     void getTodayTeamEventFromDatabase();
-    void getTodaySportEventFromDatabase();
-    void getTodayWeatherEventFromDatabase();
+    void getTodayPlanEventFromDatabase();
+    void getTodayWeatherEventFromDatabase(String sport);
+    void getTodayBestEventFromDatabase();
     void getTodayNewsFromDatabase();
     void getCommandAndLeague();
 }
