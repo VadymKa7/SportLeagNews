@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
@@ -124,12 +125,15 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @Override
     public void showEventFormServer(CommandNews event) {
         tvTodayEventMain.setText(event.getTitle());
+        tvTodayEventMainClick.setPaintFlags(tvTodayEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         tvTodayEventMainClick.setText(event.getSubtitle());
     }
 
     @Override
     public void showWeatherEventFormServer(Weather weather) {
         tvTodayWeatherEventMain.setText(weather.getTitle());
+        tvTodayWeatherEventMainClick.setPaintFlags(tvTodayWeatherEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvTodayWeatherEventMainClick.setText(weather.getSubtitle());
 
     }
@@ -137,6 +141,8 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @Override
     public void showPlanEventFormServer(Plan plan) {
         tvTodayPlanMain.setText(plan.getTitle());
+        tvTodayPlanMainClick.setPaintFlags(tvTodayPlanMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         tvTodayPlanMainClick.setText(plan.getSubtitle());
 
     }
@@ -144,6 +150,8 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @Override
     public void showBestEventFormServer(BestEvent bestEvan) {
         tvTodayBestEventMain.setText(bestEvan.getTitle());
+        tvTodayBestEventMainClick.setPaintFlags(tvTodayBestEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         tvTodayBestEventMainClick.setText(bestEvan.getSubtitle());
     }
 
@@ -163,6 +171,8 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
 
     @Override
     public void showCommandAndLeague(String league, String command) {
+
+        Toast.makeText(getContext(), league, Toast.LENGTH_SHORT).show();
         Log.d(TAG, "showCommandAndLeague: " + league);
         Log.d(TAG, "showCommandAndLeague: " + command);
     }
@@ -184,8 +194,29 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
 
     @OnClick(R.id.tvTodayEventMainClick)
     public void tvTodayEventMainClick(TextView tvTodayEventMainClick){
-        Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    }
+
+    @OnClick(R.id.tvTodayWeatherEventMainClick)
+    public void tvTodayWeatherEventMainClick(TextView tvTodayWeatherEventMainClick){
+        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    }
+
+    @OnClick(R.id.tvTodayPlanMainClick)
+    public void tvTodayPlanMainClick(TextView tvTodayPlanMainClick){
+        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    }
+
+    @OnClick(R.id.tvTodayBestEventMainClick)
+    public void tvTodayBestEventMainClick(TextView tvTodayBestEventMainClick){
+        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    }
+
+    public void sendDataInReadEventActivity(String title, String body){
+        Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("body", body);
+        startActivity(intent);
     }
 
     @Override
