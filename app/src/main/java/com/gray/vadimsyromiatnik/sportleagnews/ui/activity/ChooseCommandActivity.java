@@ -31,27 +31,6 @@ import dagger.android.AndroidInjection;
 public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, ChooseCommandPresenter> implements ChooseCommandView {
 
     @BindView(R.id.tableFootball)TableLayout tableFootball;
-    @BindView(R.id.btnPl1Command)ImageView btnPl1Command;
-    @BindView(R.id.btnPl2Command)ImageView btnPl2Command;
-    @BindView(R.id.btnPl3Command)ImageView btnPl3Command;
-    @BindView(R.id.btnPl4Command)ImageView btnPl4Command;
-    @BindView(R.id.btnPl5Command)ImageView btnPl5Command;
-    @BindView(R.id.btnPl6Command)ImageView btnPl6Command;
-    @BindView(R.id.btnPl7Command)ImageView btnPl7Command;
-    @BindView(R.id.btnPl8Command)ImageView btnPl8Command;
-    @BindView(R.id.btnPl9Command)ImageView btnPl9Command;
-    @BindView(R.id.btnPl10Command)ImageView btnPl10Command;
-    @BindView(R.id.btnPl11Command)ImageView btnPl11Command;
-    @BindView(R.id.btnPl12Command)ImageView btnPl12Command;
-    @BindView(R.id.btnPl13Command)ImageView btnPl13Command;
-    @BindView(R.id.btnPl14Command)ImageView btnPl14Command;
-    @BindView(R.id.btnPl15Command)ImageView btnPl15Command;
-    @BindView(R.id.btnPl16Command)ImageView btnPl16Command;
-    @BindView(R.id.btnPl17Command)ImageView btnPl17Command;
-    @BindView(R.id.btnPl18Command)ImageView btnPl18Command;
-    @BindView(R.id.btnPl19Command)ImageView btnPl19Command;
-    @BindView(R.id.btnPl20Command)ImageView btnPl20Command;
-
     @BindView(R.id.tableHockey)TableLayout tableHockey;
     @BindView(R.id.tableNFL)TableLayout tableNFL;
 
@@ -96,6 +75,8 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
     }
 
     // Image Button Click Listener
+    // Football
+
     @OnClick(R.id.btnPl1Command)void btnPl1Command(){
         chooseCommand(league,"Kristal Palace");
     }
@@ -155,7 +136,15 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         chooseCommand(league,"Haddersfield");
     }
 
+    // NFL
+    @OnClick(R.id.btnNFL1Command)void btnNFL1Command(){
+        chooseCommand(league,"Arizona Cardinals");
+    }
 
+
+    @OnClick(R.id.btnH1Command)void btnH1Command(){
+        chooseCommand(league,"Buffalo Sabres");
+    }
     @OnClick(R.id.imageBackTeam)void imageBackTeam(){
        startActivity(new Intent(this, ChooseLeagActivity.class));
        finish();
@@ -186,7 +175,7 @@ public class ChooseCommandActivity extends MvpActivity<ChooseCommandView, Choose
         String strLeague = league;
 
         getPresenter().saveUserCommand(command);
-
+        getPresenter().saveUserLeague(league);
         if(!commands.equals("") ){
             UserInformation userInformation = new UserInformation(strLeague, command);
             myRef.child("users").child(userID).setValue(userInformation);

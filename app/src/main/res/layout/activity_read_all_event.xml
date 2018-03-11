@@ -16,19 +16,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvTitleTodayEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:text="Title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvBodyTodayEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="body -text" />
+            android:layout_marginTop="6dp"
+            android:text="body -text"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

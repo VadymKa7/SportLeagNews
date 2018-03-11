@@ -24,6 +24,6 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
         }
         NotificationScheduler.showNotification(context, MainActivity.class,
-                "You have 5 unwatched videos", "Watch them now?");
+                "You have 5 unwatched sport events", "Watch them now?");
     }
 }

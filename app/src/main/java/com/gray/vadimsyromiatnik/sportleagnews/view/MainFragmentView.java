@@ -26,7 +26,7 @@ public interface MainFragmentView extends MvpView {
 
     void showCurrentCityWeather(String weather_city, String weather_description, String weather_temperature, String weather_updatedOn, String weather_iconText, String sun_rise);
 
-    void showCommandAndLeague(String league, String command);
+    void showCommandAndLeague(String league);
 
     String splitWeatherTemperatureView(String temperature);
 }

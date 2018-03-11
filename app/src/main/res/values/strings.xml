@@ -25,6 +25,10 @@
     <string name="text_bar_leag">Choose a league</string>
     <string name="text_bar_command">Choose a team</string>
     <string name="text_bar_event">Today event</string>
+    <string name="permission_dialog_text">Today event</string>
+    <string name="text_do_swipe">Do swaip so that your Bro will know that you read useful content!</string>
+    <string name="text_do_switch">If you wsnt we show you new events every two hover</string>
+    <string name="text_do_switch_ok">Ok,  we show you new events after two hovers </string>
     // command PL
     <string name="pl_command_arsenal">Arsenal</string>
 
@@ -36,8 +40,8 @@
     <string name="title_activity_main2">Main2Activity</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_main22">Main22Activity</string>
     <string name="text_wait">wait</string>
+
 
     <string name="sett_reminder_header">Set Reminder</string>
     <string name="sett_reminder_label">Remind Me</string>

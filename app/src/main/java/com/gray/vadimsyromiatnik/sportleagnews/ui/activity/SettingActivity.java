@@ -38,7 +38,7 @@ public class SettingActivity extends AppCompatActivity {
     SwitchCompat reminderSwitch;
 
     @BindView(R.id.tvReminderLabel) TextView tvReminderLabel;
-    @BindView(R.id.imageBackSetting) Button imageBackSetting;
+    @BindView(R.id.imageBackSetting) ImageView imageBackSetting;
 
     LinearLayout ll_set_time;
 

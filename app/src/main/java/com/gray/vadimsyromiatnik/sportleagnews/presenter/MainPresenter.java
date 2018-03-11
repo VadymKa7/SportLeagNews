@@ -12,5 +12,5 @@ public interface MainPresenter extends MvpPresenter<MainView> {
 //    void showCurrentCityWeather(String lng, String lon);
 //    void getTodayTeamEventFromDatabase();
 //    void getTodayNewsFromDatabase();
-//    void getCommandAndLeague();
+//    void getCommandAndLeagueRequestToServer();
 }

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -32,7 +33,6 @@ import com.gray.vadimsyromiatnik.sportleagnews.models.CommandNews;
 import com.gray.vadimsyromiatnik.sportleagnews.models.Plan;
 import com.gray.vadimsyromiatnik.sportleagnews.models.Weather;
 import com.gray.vadimsyromiatnik.sportleagnews.presenter.MainFragmentPresenter;
-import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.MainActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.ReadAllEventActivity;
 import com.gray.vadimsyromiatnik.sportleagnews.view.MainFragmentView;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
@@ -41,6 +41,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import dagger.android.support.AndroidSupportInjection;
 
@@ -62,11 +63,14 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     @BindView(R.id.switchTitle)Switch switchTitle;
     @BindView(R.id.recyclerViewNews)RecyclerView recyclerViewNews;
     @BindView(R.id.imageMenuMain)ImageView imageMenuMain;
+    @BindView(R.id.imageMainTitle)ImageView imageMainTitle;
+
+    private String titleBestNews, bodyBestNews, titlePlanNews, bodyPlanNews, titleWeatherNews,
+            bodyWeatherNews, titleEventNews, bodyEventNews;
     private ListenerMainActivity mListenerActivity;
     private RecyclerView.LayoutManager mLayoutManager;
     Typeface weatherFont;
     @Inject MainFragmentPresenter mainFragmentPresenter;
-
     private FusedLocationProviderClient mFusedLocationClient;
 
     @Override
@@ -80,40 +84,22 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         ButterKnife.bind(this, view);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return view;
-        }
-        mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
+        showCurrentWeatherInCity();
+        getPresenter().getCommandAndLeagueRequestToServer();
+        getPresenter().getTodayNewsFromDatabase();
 
-                if (location != null) {
-                    Log.d(TAG, "onSuccess: " + location.getLatitude());
-                    Log.d(TAG, "onSuccess: " + location.getLongitude());
-                    getPresenter().showCurrentCityWeather(String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
-                    // Logic to handle location object
+        switchTitle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    buttonView.setText(getString(R.string.text_do_switch_ok));
+                }else {
+                    buttonView.setText(getString(R.string.text_do_switch));
                 }
             }
         });
-
-        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
-
-        weatherIcon.setTypeface(weatherFont);
-//        recyclerViewNews.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this.getActivity());
-        recyclerViewNews.setLayoutManager(mLayoutManager);
-
-        getPresenter().getTodayNewsFromDatabase();
-        getPresenter().getTodayTeamEventFromDatabase();
-        getPresenter().getTodayWeatherEventFromDatabase("Football");
-        getPresenter().getTodayBestEventFromDatabase();
-        getPresenter().getTodayPlanEventFromDatabase();
-
         return view;
     }
-
 
 
     @Override
@@ -123,11 +109,25 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     }
 
     @Override
+    public void showCommandAndLeague(String league) {
+        Toast.makeText(getActivity(), league , Toast.LENGTH_SHORT).show();
+
+        if(league.equals(getString(R.string.title_football_choose))){
+            imageMainTitle.setImageResource(R.drawable.player_image);
+        }else if(league.equals(getString(R.string.title_american_football_choose))){
+            imageMainTitle.setImageResource(R.drawable.nfl_main);
+        }else {
+            imageMainTitle.setImageResource(R.drawable.nhl_main);
+        }
+    }
+
+    @Override
     public void showEventFormServer(CommandNews event) {
         tvTodayEventMain.setText(event.getTitle());
         tvTodayEventMainClick.setPaintFlags(tvTodayEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         tvTodayEventMainClick.setText(event.getSubtitle());
+        titleEventNews = event.getTitle();
+        bodyEventNews = event.getBody();
     }
 
     @Override
@@ -135,28 +135,30 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
         tvTodayWeatherEventMain.setText(weather.getTitle());
         tvTodayWeatherEventMainClick.setPaintFlags(tvTodayWeatherEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvTodayWeatherEventMainClick.setText(weather.getSubtitle());
-
+        titleWeatherNews = weather.getTitle();
+        bodyWeatherNews = weather.getBody();
     }
 
     @Override
     public void showPlanEventFormServer(Plan plan) {
         tvTodayPlanMain.setText(plan.getTitle());
         tvTodayPlanMainClick.setPaintFlags(tvTodayPlanMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         tvTodayPlanMainClick.setText(plan.getSubtitle());
-
+        titlePlanNews = plan.getTitle();
+        bodyPlanNews = plan.getBody();
     }
 
     @Override
     public void showBestEventFormServer(BestEvent bestEvan) {
         tvTodayBestEventMain.setText(bestEvan.getTitle());
         tvTodayBestEventMainClick.setPaintFlags(tvTodayBestEventMainClick.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         tvTodayBestEventMainClick.setText(bestEvan.getSubtitle());
+        titleBestNews = bestEvan.getTitle();
+        bodyBestNews = bestEvan.getBody();
     }
 
     @Override
-    public void showTodayNewList( RecyclerView.Adapter arrayAdapter) {
+    public void showTodayNewList(RecyclerView.Adapter arrayAdapter) {
         recyclerViewNews.setAdapter(arrayAdapter);
     }
 
@@ -164,18 +166,11 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
     public void showCurrentCityWeather(String weather_city, String weather_description, String weather_temperature, String weather_updatedOn, String weather_iconText, String sun_rise) {
         detailsField.setText(weather_city);
         weatherIcon.setText(Html.fromHtml(weather_iconText));
-        if(weather_temperature!=null){
+        if (weather_temperature != null) {
             currentTemperatureField.setText(splitWeatherTemperatureView(weather_temperature));
         }
     }
 
-    @Override
-    public void showCommandAndLeague(String league, String command) {
-
-        Toast.makeText(getContext(), league, Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "showCommandAndLeague: " + league);
-        Log.d(TAG, "showCommandAndLeague: " + command);
-    }
 
     @Override
     public String splitWeatherTemperatureView(String temperature) {
@@ -183,40 +178,79 @@ public class MainFragment extends MvpFragment<MainFragmentView, MainFragmentPres
         String[] parts = string.split(",");
         String part1 = parts[0];
         String part2 = parts[1];
-        return part1 ;
+        return part1;
     }
 
     @OnClick(R.id.imageMenuMain)
-    public void showImageMenuNavigation(ImageView imageMenuMain){
+    public void showImageMenuNavigation(ImageView imageMenuMain) {
         mListenerActivity.onOpenNavigation();
     }
 
 
     @OnClick(R.id.tvTodayEventMainClick)
-    public void tvTodayEventMainClick(TextView tvTodayEventMainClick){
-        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    public void tvTodayEventMainClick(TextView tvTodayEventMainClick) {
+        Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
+        intent.putExtra("title", titleEventNews);
+        intent.putExtra("body", bodyEventNews);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tvTodayWeatherEventMainClick)
-    public void tvTodayWeatherEventMainClick(TextView tvTodayWeatherEventMainClick){
-        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    public void tvTodayWeatherEventMainClick(TextView tvTodayWeatherEventMainClick) {
+        Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
+        intent.putExtra("title", titleWeatherNews);
+        intent.putExtra("body", bodyWeatherNews);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tvTodayPlanMainClick)
-    public void tvTodayPlanMainClick(TextView tvTodayPlanMainClick){
-        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    public void tvTodayPlanMainClick(TextView tvTodayPlanMainClick) {
+        Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
+        intent.putExtra("title", titlePlanNews);
+        intent.putExtra("body", bodyPlanNews);
+        startActivity(intent);
     }
 
     @OnClick(R.id.tvTodayBestEventMainClick)
-    public void tvTodayBestEventMainClick(TextView tvTodayBestEventMainClick){
-        startActivity(new Intent(getContext(), ReadAllEventActivity.class));
+    public void tvTodayBestEventMainClick(TextView tvTodayBestEventMainClick) {
+        Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
+        intent.putExtra("title", titleBestNews);
+        intent.putExtra("body", bodyBestNews);
+        startActivity(intent);
     }
 
-    public void sendDataInReadEventActivity(String title, String body){
+
+    public void sendDataInReadEventActivity(String title, String body) {
         Intent intent = new Intent(getContext(), ReadAllEventActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("body", body);
         startActivity(intent);
+    }
+
+    // get and show weather
+    public void showCurrentWeatherInCity() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+
+                if (location != null) {
+                    getPresenter().showCurrentCityWeather(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
+                    // Logic to handle location object
+                }
+            }
+        });
+
+        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericons-regular-webfont.ttf");
+
+        weatherIcon.setTypeface(weatherFont);
+        mLayoutManager = new LinearLayoutManager(this.getActivity());
+        recyclerViewNews.setLayoutManager(mLayoutManager);
     }
 
     @Override

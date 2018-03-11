@@ -30,7 +30,6 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     ArrayList<NewsList> newsDataList = new ArrayList<>();
-    ArrayList<Weather> newsDataWeather = new ArrayList<>();
     RecyclerView.Adapter arrayAdapter;
     SharedPreferSave sharedPreferSave;
 
@@ -55,8 +54,8 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     // ----- today events ------
     @Override
-    public void getTodayTeamEventFromDatabase() {
-        DatabaseReference databaseReferenceEvents = database.getReference(KeyClass.TEXT_EVENTS_DAY).child("Football");
+    public void getTodayTeamEventFromDatabase(String sport) {
+        DatabaseReference databaseReferenceEvents = database.getReference(KeyClass.TEXT_EVENTS_DAY).child(sport);
 
         databaseReferenceEvents.addChildEventListener(new ChildEventListener() {
             @Override
@@ -93,9 +92,9 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     // ----- today plan -----
     @Override
-    public void getTodayPlanEventFromDatabase() {
+    public void getTodayPlanEventFromDatabase(String sport) {
 
-        DatabaseReference databaseReferenceEventsSport = database.getReference(KeyClass.TEXT_PLAN_EVENT_DAY).child("Football");
+        DatabaseReference databaseReferenceEventsSport = database.getReference(KeyClass.TEXT_PLAN_EVENT_DAY).child(sport);
 
         databaseReferenceEventsSport.addChildEventListener(new ChildEventListener() {
             @Override
@@ -105,7 +104,6 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
                     view.showPlanEventFormServer(plan);
                 });
             }
-
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
@@ -138,9 +136,6 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
         databaseReferenceEventsWeather.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-
-                Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
                 Weather weather = dataSnapshot.getValue(Weather.class);
                 ifViewAttached((MainFragmentView view) -> {
                     view.showWeatherEventFormServer(weather);
@@ -172,16 +167,13 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
     // ----- best event -----
     @Override
-    public void getTodayBestEventFromDatabase() {
+    public void getTodayBestEventFromDatabase(String sport) {
 
-        DatabaseReference databaseReferenceEventsWeather = database.getReference(KeyClass.TEXT_EVENT_SPORT_DAY).child("Football");
+        DatabaseReference databaseReferenceEventsWeather = database.getReference(KeyClass.TEXT_EVENT_SPORT_DAY).child(sport);
 
         databaseReferenceEventsWeather.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-
-                Log.d(TAG, "onChildAdded: " + dataSnapshot.getValue());
                 BestEvent weather = dataSnapshot.getValue(BestEvent.class);
                 ifViewAttached((MainFragmentView view) -> {
                     view.showBestEventFormServer(weather);
@@ -251,14 +243,20 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
 
 
     @Override
-    public void getCommandAndLeague() {
+    public void getCommandAndLeagueRequestToServer() {
         String command = sharedPreferSave.readPreference(KeyClass.TEXT_COMMAND_CHOOSE);
         String league = sharedPreferSave.readPreference(KeyClass.TEXT_LEAGUE_CHOOSE);
-        Log.d(TAG, "getCommandAndLeague: " + command);
-        Log.d(TAG, "getCommandAndLeague: " + league);
+
+
         ifViewAttached((MainFragmentView view) -> {
-            view.showCommandAndLeague(league, command);
+            view.showCommandAndLeague(league);
         });
+
+        getTodayWeatherEventFromDatabase(league);
+        getTodayTeamEventFromDatabase(league);
+        getTodayBestEventFromDatabase(league);
+        getTodayPlanEventFromDatabase(league);
+
     }
 }
 
