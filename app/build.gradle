@@ -58,5 +58,6 @@ dependencies {
     implementation 'com.hannesdorfmann.mosby3:mvp:3.1.0'
     implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
     implementation 'com.hannesdorfmann.mosby3:mvp-lce:3.1.0'
+    implementation 'com.hannesdorfmann.mosby3:mvp-queuing-presenter:3.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

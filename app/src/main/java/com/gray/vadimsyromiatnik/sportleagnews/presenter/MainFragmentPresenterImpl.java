@@ -19,13 +19,14 @@ import com.gray.vadimsyromiatnik.sportleagnews.models.Weather;
 import com.gray.vadimsyromiatnik.sportleagnews.ui.activity.adapters.NewsAdapter;
 import com.gray.vadimsyromiatnik.sportleagnews.view.MainFragmentView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpQueuingBasePresenter;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 
-public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentView> implements MainFragmentPresenter {
+public class MainFragmentPresenterImpl  extends MvpQueuingBasePresenter<MainFragmentView> implements MainFragmentPresenter {
     private static final String TAG = "MainFragmentPresenterIm";
 
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -248,7 +249,7 @@ public class MainFragmentPresenterImpl  extends MvpBasePresenter<MainFragmentVie
         String league = sharedPreferSave.readPreference(KeyClass.TEXT_LEAGUE_CHOOSE);
 
 
-        ifViewAttached((MainFragmentView view) -> {
+        onceViewAttached((MainFragmentView view) -> {
             view.showCommandAndLeague(league);
         });
 
